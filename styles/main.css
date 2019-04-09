@@ -1,0 +1,36 @@
+body {
+    margin: 0 auto;
+
+    background-image: url('../images/night.jpg');
+    background-size: 100%;
+    background-repeat: no-repeat;
+    overflow: hidden;
+
+    color: #fff;
+    font-family: "Lato", sans-serif;
+    font-weight: 400;
+
+}
+
+.title {
+    font-size: 650%;
+    text-align: center;
+}
+
+.code {
+    position: relative;
+    left: 75%;
+
+    font-size: 250%;
+}
+
+.list {
+    position: relative;
+    left: 15%;
+
+    margin-top: 20%;
+    background-color: #333333;
+    width: 70%;
+    height: 600px;
+    opacity: 0.9;
+}

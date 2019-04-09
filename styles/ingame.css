@@ -1,0 +1,21 @@
+h2 {
+    margin-top: 20%;
+
+    font-size: 500%;
+    text-align: center;
+}
+
+.target {
+    margin-top: 10%;
+
+    font-size: 700%;
+    color: #b30000;
+}
+
+.word {
+    margin-top: 5%;
+    margin-bottom: 30%;
+
+    font-size: 700%;
+    color: #b30000;
+}

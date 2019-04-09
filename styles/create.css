@@ -1,0 +1,27 @@
+h3 {
+    position: relative;
+    left: 20%;
+
+    font-size: 350%;
+
+    margin-top: 25%;
+}
+
+
+input, label {
+    position: relative;
+    left: 20%;
+
+    font-size: 300%;
+
+    margin-bottom: 2.5%;
+}
+
+input {
+    width: 0.6em;
+    height: 0.6em;
+}
+
+button {
+    margin-top: 50%;
+}
