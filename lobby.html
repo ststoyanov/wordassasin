@@ -28,7 +28,7 @@
 			var button = document.getElementById("gameButton");
 			
 			if(button.value === "join"){
-				joinGame(roomCode);
+				joinGame(roomCode, userId);
 				button.value = "leave";
 				button.innerHTML = "Leave Game";
 			} else if(button.value === "leave"){
