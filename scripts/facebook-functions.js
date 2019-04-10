@@ -8,7 +8,7 @@ function statusChangeCallback(response) {
 	// Full docs on the response object can be found in the documentation
 	// for FB.getLoginStatus().
 	if (response.status !== 'connected') {
-	  window.location.href = "login.html";
+		window.location.href = "login.html";
 	}
 }
 
