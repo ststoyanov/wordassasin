@@ -1,3 +1,6 @@
+var userId = 0;
+var name = "";
+var profilePicSrc = "";
 
 // This is called with the results from from FB.getLoginStatus().
 function statusChangeCallback(response) {
@@ -9,12 +12,28 @@ function statusChangeCallback(response) {
 	// for FB.getLoginStatus().
 	if (response.status !== 'connected') {
 		window.location.href = "login.html";
+	} else {
+		getFBData();
 	}
 }
 
 function checkLoginState() {
 	FB.getLoginStatus(function(response) {
 		statusChangeCallback(response);
+	});
+}
+
+function getFBData () {
+	FB.api('/me', function(response) {
+	  fbinfo = new Array();
+	  fbinfo[0] = response.id;
+	  fbinfo[1] = response.first_name;
+	  fbinfo[2] = response.last_name;
+	  fbinfo[3] = response.email;
+	  
+	  userId = fbinfo[0];
+	  name = fbinfo[1] + fbinfo[2];
+	  profilePicSrc = "http://graph.facebook.com/" + response.id + "/picture?type=normal";
 	});
 }
 

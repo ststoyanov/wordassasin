@@ -6,10 +6,11 @@
     <link rel="stylesheet" href="styles/main.css">
     <link rel="stylesheet" href="styles/button.css">
     <link rel="stylesheet" href="styles/lobby.css">
+	<script src="scripts/main.js"></script>
 </head>
 
 <body>
-    <h4 class="code">Code: 1234</h4>
+    <h4 class="code" id="room">Code: 0000</h4>
     <form action="" method="POST">
         <h2>Username</h2>
         <input type="text" placeholder="etc 1234">
@@ -17,5 +18,9 @@
     </form>
 
     <div class="list"></div>
+	
+	<script>
+		document.getElementById("room").innerHTML = "Code: " + getParameterByName("room");
+	</script>
 </body>
 </html>
