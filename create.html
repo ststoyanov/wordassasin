@@ -12,7 +12,7 @@
 	<script src="scripts/facebook-functions.js"></script>
 	<script> checkLoginState() </script>
     
-    <form onsubmit="return false" onclick="createGame()" method="post">
+    <form onsubmit="return false" onclick="createGame(userId,document.getElementsByName('lang')[0])" method="post">
         <input type="radio" name="lang" value="eng" checked="checked">
         <label for="eng">English</label><br>
         <input type="radio" name="lang" value="bg">

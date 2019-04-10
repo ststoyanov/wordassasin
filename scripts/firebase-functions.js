@@ -12,22 +12,12 @@ firebase.initializeApp(config);
 
 const db = firebase.firestore();
 
-function createGame(){
+function createGame(admin, lang){
 	var id = makeid(4);
-	var lang = document.getElementsByName("lang");
-	var admin = userId;
-	
-	for(i = 0; i < lang.length; i++){
-		if(lang[i].checked == true){ 
-			lang = lang[i].value;
-			break;
-		};
-	}
 	
 	db.collection("games").doc(id).set({
 		language: lang,
-		admin: admin,
-		players: [admin]
+		admin: admin
 	})
 	.then(function() {
 		console.log("Document successfully written!");
@@ -39,6 +29,10 @@ function createGame(){
 		return false;
 	});
 
+}
+
+function joinGame(code){
+	
 }
 
 function makeid(length) {
