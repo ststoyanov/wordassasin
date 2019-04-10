@@ -15,7 +15,7 @@ const db = firebase.firestore();
 function createGame(){
 	var id = makeid(4);
 	var lang = document.getElementsByName("lang");
-	var admin = document.getElementById("username").value;
+	var admin = userId;
 	
 	for(i = 0; i < lang.length; i++){
 		if(lang[i].checked == true){ 
