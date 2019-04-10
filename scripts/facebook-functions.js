@@ -14,6 +14,7 @@ function statusChangeCallback(response) {
 		window.location.href = "login.html";
 	} else {
 		getFBData();
+		updateFBDisplay();
 	}
 }
 
