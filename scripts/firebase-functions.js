@@ -18,10 +18,11 @@ function createGame(admin, lang){
 	db.collection("games").doc(id).set({
 		language: lang,
 		admin: admin,
+		players: [admin]
 	})
 	.then(function() {
 		console.log("Document successfully written!");
-		joinGame(id, admin);
+		joinGame(id, "1244q");
 		post("lobby.html",{room: id}, "get");
 		return false;
 	})
