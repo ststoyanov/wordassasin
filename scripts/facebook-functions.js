@@ -1,4 +1,4 @@
-var userId = 0;
+var FBuserId = 0;
 var FBname = "";
 var profilePicSrc = "";
 
@@ -31,7 +31,7 @@ function getFBData () {
 	  fbinfo[2] = response.last_name;
 	  fbinfo[3] = response.email;
 	  
-	  userId = fbinfo[0];
+	  FBuserId = fbinfo[0];
 	  FBname = fbinfo[1] + fbinfo[2];
 	  profilePicSrc = "http://graph.facebook.com/" + response.id + "/picture?type=normal";
 	});
@@ -40,14 +40,12 @@ function getFBData () {
 function updateFBDisplay() {
 	FB.api('/me', function(response) {
 	  
-	  userId = response.id;
+	  FBuserId = response.id;
 	  FBname = response.name;
 	  profilePicSrc = "http://graph.facebook.com/" + response.id + "/picture?type=normal";
 	  document.getElementById("FBprofileImage").setAttribute("src", profilePicSrc);
 	  document.getElementById("FBname").innerHTML = FBname;
 	});
-	
-	
 }
 
 window.fbAsyncInit = function() {

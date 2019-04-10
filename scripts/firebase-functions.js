@@ -32,8 +32,10 @@ function createGame(admin, lang){
 
 }
 
-function joinGame(code, userId){
+function joinGame(code, userId, name){
 	var gameRef = db.collection("games").doc(code);
+
+	
 	var players = [];
 	
 	gameRef.get().then(function(doc) {
@@ -45,6 +47,13 @@ function joinGame(code, userId){
 					players: players
 				});
 			}
+			db.collection("players").doc(userId.toString()).set({
+				name: name,
+				status: "alive",
+				target: "",
+				word: "",
+				room: code
+			});
 		} else {
 			// doc.data() will be undefined in this case
 			console.log("No such document!");
@@ -54,7 +63,7 @@ function joinGame(code, userId){
 	});
 }
 
-function leaveGame(code){
+function leaveGame(code, userId){
 	var gameRef = db.collection("games").doc(code);
 	var players = [];
 	
@@ -69,6 +78,13 @@ function leaveGame(code){
 				gameRef.update({
 					players: players
 				});
+				
+				db.collection("players").doc(userId.toString()).delete().then(function() {
+					console.log("Document successfully deleted!");
+				}).catch(function(error) {
+					console.error("Error removing document: ", error);
+				});
+
 			}
 		} else {
 			// doc.data() will be undefined in this case
