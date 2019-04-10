@@ -9,9 +9,10 @@
 
 <body>
 	<script src="scripts/facebook-functions.js"></script>
-	<script> checkLoginState() </script>
+	<script>  </script>
 	
     <h4 class="code" id="room">Code: 0000</h4>
+	<h3 id="whodat"></h3>
     <img id="FBprofileImage" alt="avatar" width="125" height="125">
 	<h2 id="FBname"></h2>
     <button id="gameButton" value="join" onclick="gameButton()">Join Game</button>
@@ -21,8 +22,11 @@
 	<script src="https://www.gstatic.com/firebasejs/5.9.3/firebase.js"></script>
 	<script src="scripts/firebase-functions.js"></script>
 	<script>
-		var roomCode = getParameterByName("room")
+		var roomCode = getParameterByName("room");
+		checkLoginState(roomCode);
+		
 		document.getElementById("room").innerHTML = "Code: " + roomCode;
+		
 		
 		function gameButton(){
 			var button = document.getElementById("gameButton");
@@ -37,6 +41,8 @@
 				button.innerHTML = "Join Game";
 			} else if(button.value === "start"){
 				startGame(roomCode);
+			} else if(button.value === "dead"){
+				rip(roomCode, userId);
 			}
 		}
 	</script>

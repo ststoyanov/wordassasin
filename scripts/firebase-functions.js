@@ -18,7 +18,8 @@ function createGame(admin, lang){
 	db.collection("games").doc(id).set({
 		language: lang,
 		admin: admin,
-		players: [admin]
+		players: [admin],
+		status: "setup"
 	})
 	.then(function() {
 		console.log("Document successfully written!");
@@ -90,13 +91,29 @@ function leaveGame(code, userId){
 			// doc.data() will be undefined in this case
 			console.log("No such document!");
 		}
-		}).catch(function(error) {
-			console.log("Error getting document:", error);
+	}).catch(function(error) {
+		console.log("Error getting document:", error);
 	});
 }
 
 function startGame(code){
 	
+}
+
+function updateGameView(code){
+	var gameRef = db.collection("games").doc(code);
+	
+	gameRef.get().then(function(doc) {
+		if (doc.exists) {
+			if(doc.data().status === "setup") lobbySetup();
+			
+		} else {
+			// doc.data() will be undefined in this case
+			console.log("No such document!");
+		}
+	}).catch(function(error) {
+		console.log("Error getting document:", error);
+	});
 }
 
 function makeid(length) {
