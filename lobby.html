@@ -11,7 +11,7 @@
 
 <body>
 	<script src="scripts/facebook-functions.js"></script>
-	
+	<script> checkLoginState() </script>
 	
     <h4 class="code" id="room">Code: 0000</h4>
     <img id="FBprofileImage" alt="avatar" width="125" height="125">
@@ -23,6 +23,5 @@
 	<script>
 		document.getElementById("room").innerHTML = "Code: " + getParameterByName("room");
 	</script>
-	<script> checkLoginState() </script>
 </body>
 </html>

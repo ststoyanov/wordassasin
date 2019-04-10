@@ -41,6 +41,7 @@ function getFBData () {
 function updateFBDisplay() {
 	document.getElementById("FBprofileImage").setAttribute("src", profilePicSrc);
 	document.getElementById("FBname").innerHTML = FBname;
+	console.log(FBname + "aaaaaaa");
 }
 
 window.fbAsyncInit = function() {
