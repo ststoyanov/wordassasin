@@ -13,7 +13,6 @@ function statusChangeCallback(response) {
 	if (response.status !== 'connected') {
 		window.location.href = "login.html";
 	} else {
-		getFBData();
 		updateFBDisplay();
 	}
 }
@@ -35,13 +34,24 @@ function getFBData () {
 	  userId = fbinfo[0];
 	  FBname = fbinfo[1] + fbinfo[2];
 	  profilePicSrc = "http://graph.facebook.com/" + response.id + "/picture?type=normal";
-	  console.log(FBname + "aaaaaaa" + userId);
 	});
 }
 
 function updateFBDisplay() {
-	document.getElementById("FBprofileImage").setAttribute("src", profilePicSrc);
-	document.getElementById("FBname").innerHTML = FBname;
+	FB.api('/me', function(response) {
+	  fbinfo = new Array();
+	  fbinfo[0] = response.id;
+	  fbinfo[1] = response.first_name;
+	  fbinfo[2] = response.last_name;
+	  fbinfo[3] = response.email;
+	  
+	  userId = fbinfo[0];
+	  FBname = fbinfo[1] + fbinfo[2];
+	  profilePicSrc = "http://graph.facebook.com/" + response.id + "/picture?type=normal";
+	  document.getElementById("FBprofileImage").setAttribute("src", profilePicSrc);
+	  document.getElementById("FBname").innerHTML = FBname;
+	});
+	
 	
 }
 
