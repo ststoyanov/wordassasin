@@ -1,5 +1,5 @@
 var userId = 0;
-var name = "";
+var FBname = "";
 var profilePicSrc = "";
 
 // This is called with the results from from FB.getLoginStatus().
@@ -32,7 +32,7 @@ function getFBData () {
 	  fbinfo[3] = response.email;
 	  
 	  userId = fbinfo[0];
-	  name = fbinfo[1] + fbinfo[2];
+	  FBname = fbinfo[1] + fbinfo[2];
 	  profilePicSrc = "http://graph.facebook.com/" + response.id + "/picture?type=normal";
 	});
 }
