@@ -35,13 +35,14 @@ function getFBData () {
 	  userId = fbinfo[0];
 	  FBname = fbinfo[1] + fbinfo[2];
 	  profilePicSrc = "http://graph.facebook.com/" + response.id + "/picture?type=normal";
+	  console.log(FBname + "aaaaaaa" + userId);
 	});
 }
 
 function updateFBDisplay() {
 	document.getElementById("FBprofileImage").setAttribute("src", profilePicSrc);
 	document.getElementById("FBname").innerHTML = FBname;
-	console.log(FBname + "aaaaaaa");
+	
 }
 
 window.fbAsyncInit = function() {
