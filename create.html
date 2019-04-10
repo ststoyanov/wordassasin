@@ -10,13 +10,17 @@
 
 <body>
     
-    <form action="http://localhost:1234" method="POST">
+    <form onsubmit="return false" onclick="createGame()" method="post">
         <input type="radio" name="lang" value="eng" checked="checked">
         <label for="eng">English</label><br>
         <input type="radio" name="lang" value="bg">
         <label for="bg">Bulgarian</label><br>
 
+		<input type="hidden" id="username" value="zabraih">
         <input type="submit" value="Submit">
     </form>
+	
+	<script src="https://www.gstatic.com/firebasejs/5.9.3/firebase.js"></script>
+	<script src="scripts/firebase-functions.js"></script>
 </body>
 </html>

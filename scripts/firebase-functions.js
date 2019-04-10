@@ -1,0 +1,84 @@
+// Initialize Firebase
+var config = {
+	apiKey: "AIzaSyB-0OfscYervcQ4JhN5oIQxgsiE4ZYi0UQ",
+	authDomain: "word-assasin-8620e.firebaseapp.com",
+	databaseURL: "https://word-assasin-8620e.firebaseio.com",
+	projectId: "word-assasin-8620e",
+	storageBucket: "word-assasin-8620e.appspot.com",
+	messagingSenderId: "749033695281"
+};
+
+firebase.initializeApp(config);
+
+const db = firebase.firestore();
+
+function createGame(){
+	var id = makeid(4);
+	var lang = document.getElementsByName("lang");
+	var admin = document.getElementById("username").value;
+	
+	for(i = 0; i < lang.length; i++){
+		if(lang[i].checked == true){ 
+			lang = lang[i].value;
+			break;
+		};
+	}
+	
+	db.collection("games").doc(id).set({
+		language: lang,
+		admin: admin,
+		players: [admin]
+	})
+	.then(function() {
+		console.log("Document successfully written!");
+		post("lobby.html",{room: id}, "get");
+		return false;
+	})
+	.catch(function(error) {
+		console.error("Error writing document: ", error);
+		return false;
+	});
+
+}
+
+function makeid(length) {
+  var id = "";
+  var possible = "ABCDEFGHIJKLMNPQRSTUVWXYZ123456789";
+
+  for (var i = 0; i < length; i++)
+    id += possible.charAt(Math.floor(Math.random() * possible.length));
+
+  return id;
+}
+
+ /**
+ * sends a request to the specified url from a form. this will change the window location.
+ * @param {string} path the path to send the post request to
+ * @param {object} params the paramiters to add to the url
+ * @param {string} [method=post] the method to use on the form
+ */
+
+function post(path, params, method) {
+    method = method || "post"; // Set method to post by default if not specified.
+
+    // The rest of this code assumes you are not using a library.
+    // It can be made less wordy if you use one.
+    var form = document.createElement("form");
+    form.setAttribute("method", method);
+    form.setAttribute("action", path);
+
+    for(var key in params) {
+        if(params.hasOwnProperty(key)) {
+            var hiddenField = document.createElement("input");
+            hiddenField.setAttribute("type", "hidden");
+            hiddenField.setAttribute("name", key);
+            hiddenField.setAttribute("value", params[key]);
+
+            form.appendChild(hiddenField);
+        }
+    }
+
+    document.body.appendChild(form);
+    form.submit();
+}
+
