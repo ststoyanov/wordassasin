@@ -37,6 +37,11 @@ function getFBData () {
 	});
 }
 
+function updateFBDisplay() {
+	document.getElementById("FBprofileImage").setAttribute("src", profilePicSrc);
+	document.getElementById("FBname").innerHTML = FBname;
+}
+
 window.fbAsyncInit = function() {
 	FB.init({
 		appId      : '692596701156775',

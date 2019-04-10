@@ -14,16 +14,14 @@
 	<script> checkLoginState() </script>
 	
     <h4 class="code" id="room">Code: 0000</h4>
-    <img id="profileImage" alt="avatar" width="125" height="125">
-	<h2 id="name"></h2>
+    <img id="FBprofileImage" alt="avatar" width="125" height="125">
+	<h2 id="FBname"></h2>
     <button>Start Game</button>
 
     <div class="list"></div>
 	
 	<script>
 		document.getElementById("room").innerHTML = "Code: " + getParameterByName("room");
-		document.getElementById("profileImage").setAttribute("src", profilePicSrc);
-		document.getElementById("name").innerHTML = FBname;
 	</script>
 </body>
 </html>
