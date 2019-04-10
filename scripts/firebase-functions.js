@@ -22,7 +22,6 @@ function createGame(admin, lang){
 	})
 	.then(function() {
 		console.log("Document successfully written!");
-		joinGame(id, "1244q");
 		post("lobby.html",{room: id}, "get");
 		return false;
 	})
@@ -56,7 +55,28 @@ function joinGame(code, userId){
 }
 
 function leaveGame(code){
+	var gameRef = db.collection("games").doc(code);
+	var players = [];
 	
+	gameRef.get().then(function(doc) {
+		if (doc.exists) {
+			players = doc.data().players;
+			if(players.includes(userId)){
+				players = players.filter(function(value, index, arr){
+					return value !== userId;
+				});
+				
+				gameRef.update({
+					players: players
+				});
+			}
+		} else {
+			// doc.data() will be undefined in this case
+			console.log("No such document!");
+		}
+		}).catch(function(error) {
+			console.log("Error getting document:", error);
+	});
 }
 
 function startGame(code){

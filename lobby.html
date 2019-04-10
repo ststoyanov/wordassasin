@@ -14,12 +14,31 @@
     <h4 class="code" id="room">Code: 0000</h4>
     <img id="FBprofileImage" alt="avatar" width="125" height="125">
 	<h2 id="FBname"></h2>
-    <button id="gameButton" value="join">Join Game</button>
+    <button id="gameButton" value="join" onclick="gameButton()">Join Game</button>
 
     <div class="list"></div>
 	
+	<script src="https://www.gstatic.com/firebasejs/5.9.3/firebase.js"></script>
+	<script src="scripts/firebase-functions.js"></script>
 	<script>
-		document.getElementById("room").innerHTML = "Code: " + getParameterByName("room");
+		var roomCode = getParameterByName("room")
+		document.getElementById("room").innerHTML = "Code: " + roomCode;
+		
+		function gameButton(){
+			var button = document.getElementById("gameButton");
+			
+			if(button.value === "join"){
+				joinGame(roomCode);
+				button.value = "leave";
+				button.innerHTML = "Leave Game";
+			} else if(button.value === "leave"){
+				leaveGame(roomCode);
+				button.value = "join";
+				button.innerHTML = "Join Game";
+			} else if(button.value === "start"){
+				startGame(roomCode);
+			}
+		}
 	</script>
 </body>
 </html>
