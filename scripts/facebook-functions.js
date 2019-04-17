@@ -1,6 +1,7 @@
 var FBuserId = 0;
 var FBname = "";
 var profilePicSrc = "";
+var FBLoadStatus = false;
 
 // This is called with the results from from FB.getLoginStatus().
 function statusChangeCallback(response, roomCode) {
@@ -13,14 +14,13 @@ function statusChangeCallback(response, roomCode) {
 	if (response.status !== 'connected') {
 		window.location.href = "login.html";
 	} else {
-		console.log(roomCode);
-		if(roomCode) updateGameView(roomCode);
+		updateFBDisplay();
 	}
 }
 
 function checkLoginState(roomCode) {
-	FB.getLoginStatus(function(response, roomCode) {
-		statusChangeCallback(response, roomCode);
+	FB.getLoginStatus(function(response) {
+		statusChangeCallback(response);
 	});
 }
 
@@ -29,15 +29,16 @@ function getFBData () {
 	  FBuserId = response.id;
 	  FBname = response.name;
 	  profilePicSrc = "http://graph.facebook.com/" + response.id + "/picture?type=normal";
+	  FBLoadStatus = true;
 	});
 }
 
 function updateFBDisplay() {
 	FB.api('/me', function(response) {
-	  
 	  FBuserId = response.id;
 	  FBname = response.name;
 	  profilePicSrc = "http://graph.facebook.com/" + response.id + "/picture?type=normal";
+	  FBLoadStatus = true;
 	  document.getElementById("FBprofileImage").setAttribute("src", profilePicSrc);
 	  document.getElementById("FBname").innerHTML = FBname;
 	});
